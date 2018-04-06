@@ -2,6 +2,11 @@ import requests
 import time
 import pandas as pd
 import json
+  
+#change url depending on what stats you want to pull
+url = 'https://stats.nba.com/stats/draftcombineplayeranthro'
+
+d = {}
 
 #These are my default cookies and headers. Change those to yours by going to the stats.nba.com page, getting the cURL information,
 #and converting them to python using https://curl.trillworks.com/
@@ -24,7 +29,6 @@ headers = {
     'x-nba-stats-origin': 'stats',
 }
 
-d = {}
 #change loop iterations for looping over many sets of data
 for i in range(0,17):
 
@@ -40,9 +44,6 @@ for i in range(0,17):
         ('LeagueID', '00'),
         ('SeasonYear', season),
     )
-    
-    #change url depending on what stats you want to pull
-    url = 'https://stats.nba.com/stats/draftcombineplayeranthro'
     
     response = requests.get(url, headers=headers, params=params, cookies=cookies)
     data = response.json()
